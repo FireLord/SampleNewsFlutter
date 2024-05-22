@@ -1,7 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:sample_news/data/api/NewsAPIService.dart';
-import 'package:sample_news/data/api/NewsAPIServiceImpl.dart';
 import 'package:sample_news/data/repository/dataSource/NewsRemoteDataSource.dart';
 import 'package:sample_news/data/repository/dataSourceImpl/NewsRemoteDataSourceImpl.dart';
 import 'package:sample_news/domain/repository/NewsRepository.dart';
@@ -15,7 +14,7 @@ Future<void> initDependency() async {
   sl.registerSingleton<Client>(Client());
 
   // NewsAPIService as Singleton
-  sl.registerSingleton<NewsAPIService>(NewsAPIServiceImpl(sl()));
+  sl.registerSingleton(NewsAPIService(sl()));
 
   // NewsRemoteDataSourceImpl as Singleton
   sl.registerSingleton<NewsRemoteDataSource>(NewsRemoteDataSourceImpl(sl()));
