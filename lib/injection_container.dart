@@ -27,5 +27,5 @@ Future<void> initDependency() async {
   sl.registerSingleton(FetchNewsArticleUseCase(sl()));
 
   // Bloc as Singleton
-  sl.registerSingleton(HomeBloc(sl()));
+  sl.registerFactory(() => HomeBloc(sl()));
 }
