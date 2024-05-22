@@ -6,6 +6,7 @@ import 'package:sample_news/data/repository/dataSource/NewsRemoteDataSource.dart
 import 'package:sample_news/data/repository/dataSourceImpl/NewsRemoteDataSourceImpl.dart';
 import 'package:sample_news/domain/repository/NewsRepository.dart';
 import 'package:sample_news/domain/usecase/FetchNewsArticleUseCase.dart';
+import 'package:sample_news/presentation/screen/bloc/HomeBloc.dart';
 import 'data/repository/NewsRepositoryImpl.dart';
 
 final sl = GetIt.instance;
@@ -24,4 +25,7 @@ Future<void> initDependency() async {
 
   // UseCase as Singleton
   sl.registerSingleton(FetchNewsArticleUseCase(sl()));
+
+  // Bloc as Singleton
+  sl.registerSingleton(HomeBloc(sl()));
 }

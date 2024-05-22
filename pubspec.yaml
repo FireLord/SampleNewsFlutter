@@ -41,6 +41,9 @@ dependencies:
   # http client
   http: ^1.2.1
 
+  # Bloc
+  bloc: ^8.0.1
+
   # equitable
   equatable: ^2.0.3
 
