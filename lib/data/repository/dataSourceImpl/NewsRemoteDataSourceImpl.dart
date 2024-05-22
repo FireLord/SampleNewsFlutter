@@ -1,6 +1,6 @@
-import 'package:sample_news/data/api/NewsAPIService.dart';
 import 'package:sample_news/data/model/Article.dart';
 import 'package:sample_news/data/util/Resource.dart';
+import '../../api/NewsAPIService.dart';
 import '../dataSource/NewsRemoteDataSource.dart';
 
 class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
