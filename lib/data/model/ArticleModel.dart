@@ -1,20 +1,26 @@
 import 'package:objectbox/objectbox.dart';
-import 'package:sample_news/domain/entities/ArticleEntity.dart';
 
 @Entity()
-class ArticleModel extends ArticleEntity{
+class ArticleModel{
   @Id()
   int? id;
+  String? author;
+  String? title;
+  String? description;
+  String? url;
+  String? urlToImage;
+  String? publishedAt;
+  String? content;
 
   ArticleModel({
     this.id,
-    super.author,
-    super.title,
-    super.description,
-    super.url,
-    super.urlToImage,
-    super.publishedAt,
-    super.content,
+    this.author,
+    this.title,
+    this.description,
+    this.url,
+    this.urlToImage,
+    this.publishedAt,
+    this.content,
   });
 
   factory ArticleModel.fromJson(Map<String, dynamic> map) => ArticleModel(

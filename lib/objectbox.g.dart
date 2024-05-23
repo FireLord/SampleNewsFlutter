@@ -22,14 +22,49 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
       id: const obx_int.IdUid(2, 9044507090241329163),
       name: 'ArticleModel',
-      lastPropertyId: const obx_int.IdUid(1, 4042092603483280900),
+      lastPropertyId: const obx_int.IdUid(8, 274959432619075919),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
             id: const obx_int.IdUid(1, 4042092603483280900),
             name: 'id',
             type: 6,
-            flags: 1)
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 9032401650778124531),
+            name: 'author',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 3828757692747197045),
+            name: 'title',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(4, 282119614763544580),
+            name: 'description',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 5615380863390379944),
+            name: 'url',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 8722359345148164459),
+            name: 'urlToImage',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 4728800492768223803),
+            name: 'publishedAt',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(8, 274959432619075919),
+            name: 'content',
+            type: 9,
+            flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[])
@@ -101,8 +136,32 @@ obx_int.ModelDefinition getObjectBoxModel() {
           object.id = id;
         },
         objectToFB: (ArticleModel object, fb.Builder fbb) {
-          fbb.startTable(2);
+          final authorOffset =
+              object.author == null ? null : fbb.writeString(object.author!);
+          final titleOffset =
+              object.title == null ? null : fbb.writeString(object.title!);
+          final descriptionOffset = object.description == null
+              ? null
+              : fbb.writeString(object.description!);
+          final urlOffset =
+              object.url == null ? null : fbb.writeString(object.url!);
+          final urlToImageOffset = object.urlToImage == null
+              ? null
+              : fbb.writeString(object.urlToImage!);
+          final publishedAtOffset = object.publishedAt == null
+              ? null
+              : fbb.writeString(object.publishedAt!);
+          final contentOffset =
+              object.content == null ? null : fbb.writeString(object.content!);
+          fbb.startTable(9);
           fbb.addInt64(0, object.id ?? 0);
+          fbb.addOffset(1, authorOffset);
+          fbb.addOffset(2, titleOffset);
+          fbb.addOffset(3, descriptionOffset);
+          fbb.addOffset(4, urlOffset);
+          fbb.addOffset(5, urlToImageOffset);
+          fbb.addOffset(6, publishedAtOffset);
+          fbb.addOffset(7, contentOffset);
           fbb.finish(fbb.endTable());
           return object.id ?? 0;
         },
@@ -111,7 +170,31 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final rootOffset = buffer.derefObject(0);
           final idParam =
               const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 4);
-          final object = ArticleModel(id: idParam);
+          final authorParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 6);
+          final titleParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 8);
+          final descriptionParam =
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGetNullable(buffer, rootOffset, 10);
+          final urlParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 12);
+          final urlToImageParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 14);
+          final publishedAtParam =
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGetNullable(buffer, rootOffset, 16);
+          final contentParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 18);
+          final object = ArticleModel(
+              id: idParam,
+              author: authorParam,
+              title: titleParam,
+              description: descriptionParam,
+              url: urlParam,
+              urlToImage: urlToImageParam,
+              publishedAt: publishedAtParam,
+              content: contentParam);
 
           return object;
         })
@@ -125,4 +208,32 @@ class ArticleModel_ {
   /// See [ArticleModel.id].
   static final id =
       obx.QueryIntegerProperty<ArticleModel>(_entities[0].properties[0]);
+
+  /// See [ArticleModel.author].
+  static final author =
+      obx.QueryStringProperty<ArticleModel>(_entities[0].properties[1]);
+
+  /// See [ArticleModel.title].
+  static final title =
+      obx.QueryStringProperty<ArticleModel>(_entities[0].properties[2]);
+
+  /// See [ArticleModel.description].
+  static final description =
+      obx.QueryStringProperty<ArticleModel>(_entities[0].properties[3]);
+
+  /// See [ArticleModel.url].
+  static final url =
+      obx.QueryStringProperty<ArticleModel>(_entities[0].properties[4]);
+
+  /// See [ArticleModel.urlToImage].
+  static final urlToImage =
+      obx.QueryStringProperty<ArticleModel>(_entities[0].properties[5]);
+
+  /// See [ArticleModel.publishedAt].
+  static final publishedAt =
+      obx.QueryStringProperty<ArticleModel>(_entities[0].properties[6]);
+
+  /// See [ArticleModel.content].
+  static final content =
+      obx.QueryStringProperty<ArticleModel>(_entities[0].properties[7]);
 }
