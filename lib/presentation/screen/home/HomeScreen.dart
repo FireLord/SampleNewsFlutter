@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/HomeBloc.dart';
+import 'bloc/HomeEvent.dart';
 import 'bloc/HomeState.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,7 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   buildBody() {
     return BlocBuilder<HomeBloc, HomeState>(
-      builder: (_, state) {
+      builder: (context, state) {
         if (state is ArticleLoading) {
           return const Center(
             child: CircularProgressIndicator(),
@@ -34,6 +35,14 @@ class HomeScreen extends StatelessWidget {
               return ListTile(
                 title: Text(article?.title ?? ""),
                 subtitle: Text(article?.description ?? ""),
+                trailing: IconButton(
+                    icon: const Icon(Icons.favorite_border),
+                    onPressed: () {
+                      BlocProvider.of<HomeBloc>(context).add(
+                        SaveArticle(article!),
+                      );
+                    },
+                ),
               );
             },
           );

@@ -2,9 +2,8 @@ import 'package:objectbox/objectbox.dart';
 import 'package:sample_news/domain/entities/ArticleEntity.dart';
 
 @Entity()
-class ArticleModel extends ArticleEntity {
+class ArticleModel extends ArticleEntity{
   @Id()
-  @override
   int? id;
 
   ArticleModel({

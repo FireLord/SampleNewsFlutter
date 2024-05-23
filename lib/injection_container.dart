@@ -9,6 +9,7 @@ import 'package:sample_news/data/repository/dataSourceImpl/NewsRemoteDataSourceI
 import 'package:sample_news/domain/repository/NewsRepository.dart';
 import 'package:sample_news/domain/usecase/FetchNewsArticleUseCase.dart';
 import 'package:sample_news/presentation/screen/home/bloc/HomeBloc.dart';
+import 'package:sample_news/presentation/screen/saved/bloc/SavedBloc.dart';
 import 'data/repository/NewsRepositoryImpl.dart';
 import 'data/repository/dataSourceImpl/NewsLocalDataSourceImpl.dart';
 import 'domain/usecase/DeleteNewsArticleUseCase.dart';
@@ -56,6 +57,9 @@ Future<void> initDependency() async {
   // GetSavedNewsArticleUseCase as Singleton
   sl.registerSingleton(GetSavedNewsArticleUseCase(sl()));
 
-  // Bloc as Singleton
-  sl.registerFactory(() => HomeBloc(sl()));
+  // HomeBloc as Singleton
+  sl.registerFactory(() => HomeBloc(sl(), sl()));
+
+  // SavedBloc as Singleton
+  sl.registerFactory(() => SavedBloc(sl(), sl()));
 }

@@ -8,6 +8,8 @@ import '../../../injection_container.dart';
 import '../home/bloc/HomeBloc.dart';
 import '../home/bloc/HomeEvent.dart';
 import '../saved/SavedScreen.dart';
+import '../saved/bloc/SavedBloc.dart';
+import '../saved/bloc/SavedEvent.dart';
 
 class MainTabScreen extends StatelessWidget {
   const MainTabScreen({super.key});
@@ -36,6 +38,9 @@ class MainTabScreen extends StatelessWidget {
         BlocProvider(
           create: (_) => sl<HomeBloc>()..add(const GetArticles()),
         ),
+        BlocProvider(
+          create: (_) => sl<SavedBloc>()..add(const GetSavedArticles()),
+        )
       ],
       child: BlocConsumer<MainTabBloc, MainTabState>(
         listener: (context, state) {},
