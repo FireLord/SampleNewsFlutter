@@ -13,19 +13,7 @@ class HomeScreen extends StatelessWidget {
     return BlocProvider<HomeBloc>(
       create: (_) => sl()..add(const GetArticles()),
       child: Scaffold(
-        appBar: buildAppBar(),
         body: buildBody(),
-      ),
-    );
-  }
-
-  buildAppBar() {
-    return AppBar(
-      title: const Text(
-        'Sample News',
-        style: TextStyle(
-          color: Colors.black,
-        ),
       ),
     );
   }

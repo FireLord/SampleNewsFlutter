@@ -29,6 +29,9 @@ class MainTabScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
+          appBar: AppBar(
+            title: const Text("Sample News"),
+          ),
           body: bottomNavScreen.elementAt(state.tabIndex),
           bottomNavigationBar: BottomNavigationBar(
             items: bottomNavItems,
