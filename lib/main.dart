@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sample_news/data/db/NewsDatabase.dart';
 import 'package:sample_news/injection_container.dart';
 import 'package:sample_news/presentation/screen/HomeScreen.dart';
 import 'package:sample_news/presentation/screen/bloc/HomeBloc.dart';
 import 'package:sample_news/presentation/screen/bloc/HomeEvent.dart';
 
+late NewsDatabase newsDatabase;
+
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  newsDatabase = sl<NewsDatabase>();
   await initDependency();
   runApp(const MyApp());
 }

@@ -63,6 +63,12 @@ dependencies:
   objectbox: ^4.0.0
   objectbox_flutter_libs: any
 
+  # Path provider
+  path_provider: ^2.0.2
+
+  # Path
+  path: ^1.8.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
