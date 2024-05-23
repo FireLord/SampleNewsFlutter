@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sample_news/presentation/screen/bloc/HomeBloc.dart';
-import 'package:sample_news/presentation/screen/bloc/HomeState.dart';
+import 'package:sample_news/presentation/screen/home/bloc/HomeEvent.dart';
+import '../../../injection_container.dart';
+import 'bloc/HomeBloc.dart';
+import 'bloc/HomeState.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(),
-      body: buildBody(),
+    return BlocProvider<HomeBloc>(
+      create: (_) => sl()..add(const GetArticles()),
+      child: Scaffold(
+        appBar: buildAppBar(),
+        body: buildBody(),
+      ),
     );
   }
 

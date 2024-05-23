@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:sample_news/data/util/Resource.dart';
-import 'package:sample_news/presentation/screen/bloc/HomeEvent.dart';
-import 'package:sample_news/presentation/screen/bloc/HomeState.dart';
-import '../../../domain/usecase/FetchNewsArticleUseCase.dart';
+import 'package:sample_news/domain/usecase/FetchNewsArticleUseCase.dart';
+import 'HomeEvent.dart';
+import 'HomeState.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final FetchNewsArticleUseCase fetchNewsArticleUseCase;

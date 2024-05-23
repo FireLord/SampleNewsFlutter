@@ -2,13 +2,13 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:sample_news/data/api/NewsAPIService.dart';
 import 'package:sample_news/data/db/NewsDao.dart';
+import 'package:sample_news/data/db/NewsDatabase.dart';
 import 'package:sample_news/data/repository/dataSource/NewsLocalDataSource.dart';
 import 'package:sample_news/data/repository/dataSource/NewsRemoteDataSource.dart';
 import 'package:sample_news/data/repository/dataSourceImpl/NewsRemoteDataSourceImpl.dart';
 import 'package:sample_news/domain/repository/NewsRepository.dart';
 import 'package:sample_news/domain/usecase/FetchNewsArticleUseCase.dart';
-import 'package:sample_news/presentation/screen/bloc/HomeBloc.dart';
-import 'data/db/NewsDatabase.dart';
+import 'package:sample_news/presentation/screen/home/bloc/HomeBloc.dart';
 import 'data/repository/NewsRepositoryImpl.dart';
 import 'data/repository/dataSourceImpl/NewsLocalDataSourceImpl.dart';
 import 'domain/usecase/DeleteNewsArticleUseCase.dart';
@@ -29,6 +29,8 @@ Future<void> initDependency() async {
     final newsDatabase = await NewsDatabase.create();
     return newsDatabase;
   });
+
+  await sl.allReady();
 
   // NewsDao as Singleton
   sl.registerSingleton(NewsDao(sl()));
@@ -56,6 +58,4 @@ Future<void> initDependency() async {
 
   // Bloc as Singleton
   sl.registerFactory(() => HomeBloc(sl()));
-
-  await sl.allReady();
 }
