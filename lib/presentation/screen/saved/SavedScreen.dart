@@ -4,6 +4,8 @@ import 'package:sample_news/presentation/screen/saved/bloc/SavedBloc.dart';
 import 'package:sample_news/presentation/screen/saved/bloc/SavedEvent.dart';
 import 'package:sample_news/presentation/screen/saved/bloc/SavedState.dart';
 
+import '../../../data/model/ArticleModel.dart';
+
 class SavedScreen extends StatelessWidget {
   const SavedScreen({super.key});
 
@@ -43,6 +45,9 @@ class SavedScreen extends StatelessWidget {
                     );
                   },
                 ),
+                onTap: () {
+                  onArticlePressed(context, article!);
+                },
               );
             },
           );
@@ -51,5 +56,9 @@ class SavedScreen extends StatelessWidget {
         return const SizedBox();
       },
     );
+  }
+
+  void onArticlePressed(BuildContext context, ArticleModel article) {
+    Navigator.pushNamed(context, '/detailScreen', arguments: article);
   }
 }

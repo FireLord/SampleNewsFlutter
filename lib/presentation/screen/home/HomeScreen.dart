@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sample_news/data/model/ArticleModel.dart';
 import 'bloc/HomeBloc.dart';
 import 'bloc/HomeEvent.dart';
 import 'bloc/HomeState.dart';
@@ -43,6 +44,9 @@ class HomeScreen extends StatelessWidget {
                       );
                     },
                 ),
+                onTap: () {
+                  onArticlePressed(context, article!);
+                },
               );
             },
           );
@@ -51,5 +55,9 @@ class HomeScreen extends StatelessWidget {
         return const SizedBox();
       },
     );
+  }
+
+  void onArticlePressed(BuildContext context, ArticleModel article) {
+    Navigator.pushNamed(context, '/detailScreen', arguments: article);
   }
 }
