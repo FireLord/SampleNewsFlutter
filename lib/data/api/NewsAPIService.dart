@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart';
-import 'package:sample_news/data/model/Article.dart';
+import 'package:sample_news/data/model/ArticleModel.dart';
 import 'package:sample_news/data/util/Constant.dart';
 import '../util/Resource.dart';
 
@@ -9,7 +9,7 @@ class NewsAPIService {
 
   NewsAPIService(this.client);
 
-  Future<Resource<List<Article>>> getNews() async {
+  Future<Resource<List<ArticleModel>>> getNews() async {
     try {
       Map<String, String> queryParams = {
         'country': 'in',
@@ -28,8 +28,8 @@ class NewsAPIService {
       if (response.statusCode == 200) {
         var data = response.body;
         final Map<String, dynamic> parsed = json.decode(data);
-        List<Article> articles = (parsed['articles'] as List)
-            .map((article) => Article.fromJson(article))
+        List<ArticleModel> articles = (parsed['articles'] as List)
+            .map((article) => ArticleModel.fromJson(article))
             .toList();
         return Success(articles);
       } else {

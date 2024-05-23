@@ -1,4 +1,4 @@
-import 'package:sample_news/data/model/Article.dart';
+import 'package:sample_news/data/model/ArticleModel.dart';
 import 'package:sample_news/data/repository/dataSource/NewsRemoteDataSource.dart';
 import 'package:sample_news/data/util/Resource.dart';
 import 'package:sample_news/domain/repository/NewsRepository.dart';
@@ -9,7 +9,7 @@ class NewsRepositoryImpl implements NewsRepository {
   NewsRepositoryImpl(this.newsRemoteDataSource);
 
   @override
-  Future<Resource<List<Article>>> getNewsArticle() {
+  Future<Resource<List<ArticleModel>>> getNewsArticle() {
     return newsRemoteDataSource.getNews();
   }
 }

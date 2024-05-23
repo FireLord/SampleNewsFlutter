@@ -59,6 +59,10 @@ dependencies:
   # cached image
   cached_network_image: ^3.0.0
 
+  # objectbox
+  objectbox: ^4.0.0
+  objectbox_flutter_libs: any
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -69,6 +73,12 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
+
+  # Build runner
+  build_runner: ^2.0.0
+
+  # Objectbox generator
+  objectbox_generator: any
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

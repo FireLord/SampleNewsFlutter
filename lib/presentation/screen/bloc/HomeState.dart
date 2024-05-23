@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:sample_news/data/model/Article.dart';
+import 'package:sample_news/data/model/ArticleModel.dart';
 
 abstract class HomeState extends Equatable {
-  final List<Article>? articles;
+  final List<ArticleModel>? articles;
   final String? message;
 
   const HomeState({this.articles, this.message});
@@ -16,7 +16,7 @@ class ArticleLoading extends HomeState {
 }
 
 class ArticleDone extends HomeState {
-  const ArticleDone(List<Article> articles) : super(articles: articles);
+  const ArticleDone(List<ArticleModel> articles) : super(articles: articles);
 }
 
 class ArticleError extends HomeState {
