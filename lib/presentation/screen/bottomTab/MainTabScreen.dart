@@ -58,6 +58,9 @@ class MainTabScreen extends StatelessWidget {
               onTap: (index) {
                 BlocProvider.of<MainTabBloc>(context)
                     .add(TabChange(tabIndex: index));
+                if(index == 1) {
+                  BlocProvider.of<SavedBloc>(context).add(const GetSavedArticles());
+                }
               },
             ),
           );

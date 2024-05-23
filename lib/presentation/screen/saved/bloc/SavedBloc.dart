@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter/foundation.dart';
 import '/domain/usecase/DeleteNewsArticleUseCase.dart';
 import '/domain/usecase/GetSavedNewsArticleUseCase.dart';
 import 'SavedEvent.dart';
@@ -23,18 +22,23 @@ class SavedBloc extends Bloc<SavedEvent, SavedState> {
       emit(ArticleDone(result));
     }
 
-    if (kDebugMode) {
-      print(result);
-    }
-
     if (result.isEmpty) {
       emit(const ArticleError("Empty list"));
     }
   }
 
-  void onDeleteArticle(DeleteArticle event, Emitter<SavedState> emit) {
+  void onDeleteArticle(DeleteArticle event, Emitter<SavedState> emit) async {
     try {
       deleteArticleUseCase.execute(event.article!);
+      final result = await getSavedNewsArticleUseCase.execute();
+
+      if (result.isNotEmpty) {
+        emit(ArticleDone(result));
+      }
+
+      if (result.isEmpty) {
+        emit(const ArticleError("Empty list"));
+      }
     } catch (e) {
       emit(ArticleError(e.toString()));
     }
