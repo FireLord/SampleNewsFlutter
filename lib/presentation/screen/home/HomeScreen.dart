@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sample_news/presentation/screen/home/bloc/HomeEvent.dart';
-import '../../../injection_container.dart';
 import 'bloc/HomeBloc.dart';
 import 'bloc/HomeState.dart';
 
@@ -10,12 +8,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<HomeBloc>(
-      create: (_) => sl()..add(const GetArticles()),
-      child: Scaffold(
-        body: buildBody(),
-      ),
-    );
+    return buildBody();
   }
 
   buildBody() {
