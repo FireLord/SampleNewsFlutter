@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sample_news/data/model/ArticleModel.dart';
-import 'bloc/HomeBloc.dart';
-import 'bloc/HomeEvent.dart';
-import 'bloc/HomeState.dart';
+import 'package:get/get.dart';
+import '../../../injection_container.dart';
+import '../detail/DetailScreen.dart';
+import 'HomeController.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -14,50 +13,35 @@ class HomeScreen extends StatelessWidget {
   }
 
   buildBody() {
-    return BlocBuilder<HomeBloc, HomeState>(
-      builder: (context, state) {
-        if (state is ArticleLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
+    final HomeController homeController = sl<HomeController>();
+    homeController.onGetArticles();
 
-        if (state is ArticleError) {
-          return const Center(
-              child: Icon(Icons.refresh)
-          );
-        }
-
-        if (state is ArticleDone) {
-          return ListView.builder(
-            itemCount: state.articles?.length,
-            itemBuilder: (_, index) {
-              final article = state.articles?[index];
-              return ListTile(
-                title: Text(article?.title ?? ""),
-                subtitle: Text(article?.description ?? ""),
-                trailing: IconButton(
-                    icon: const Icon(Icons.favorite_border),
-                    onPressed: () {
-                      BlocProvider.of<HomeBloc>(context).add(
-                        SaveArticle(article!),
-                      );
-                    },
-                ),
-                onTap: () {
-                  onArticlePressed(context, article!);
-                },
-              );
-            },
-          );
-        }
-
-        return const SizedBox();
-      },
-    );
-  }
-
-  void onArticlePressed(BuildContext context, ArticleModel article) {
-    Navigator.pushNamed(context, '/detailScreen', arguments: article);
+    return Obx(() {
+      if (homeController.isLoading.value) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (homeController.errorMessage.value.isNotEmpty) {
+        return Center(
+          child: Text(homeController.errorMessage.value),
+        );
+      } else {
+        return ListView.builder(
+          itemCount: homeController.articleList.length,
+          itemBuilder: (context, index) {
+            final article = homeController.articleList[index];
+            return ListTile(
+              title: Text(article.title!),
+              subtitle: Text(article.description!),
+              trailing: IconButton(
+                icon: const Icon(Icons.favorite_border),
+                onPressed: () => homeController.saveNewsArticleUseCase.execute(article),
+              ),
+              onTap: () => Get.to(() => DetailScreen(article: article)),
+            );
+          },
+        );
+      }
+    });
   }
 }

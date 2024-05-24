@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sample_news/presentation/screen/saved/bloc/SavedBloc.dart';
-import 'package:sample_news/presentation/screen/saved/bloc/SavedEvent.dart';
-import 'package:sample_news/presentation/screen/saved/bloc/SavedState.dart';
-
-import '../../../data/model/ArticleModel.dart';
+import 'package:get/get.dart';
+import '../../../injection_container.dart';
+import '../detail/DetailScreen.dart';
+import 'SavedController.dart';
 
 class SavedScreen extends StatelessWidget {
   const SavedScreen({super.key});
@@ -15,50 +13,35 @@ class SavedScreen extends StatelessWidget {
   }
 
   buildBody() {
-    return BlocBuilder<SavedBloc, SavedState>(
-      builder: (context, state) {
-        if (state is ArticleLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
+    final SavedController savedController = sl<SavedController>();
+    savedController.onGetSavedArticles();
 
-        if (state is ArticleError) {
-          return const Center(
-              child: Icon(Icons.refresh)
-          );
-        }
-
-        if (state is ArticleDone) {
-          return ListView.builder(
-            itemCount: state.articles?.length,
-            itemBuilder: (_, index) {
-              final article = state.articles?[index];
-              return ListTile(
-                title: Text(article?.title ?? ""),
-                subtitle: Text(article?.description ?? ""),
-                trailing: IconButton(
-                  icon: const Icon(Icons.favorite_border),
-                  onPressed: () {
-                    BlocProvider.of<SavedBloc>(context).add(
-                      DeleteArticle(article!),
-                    );
-                  },
-                ),
-                onTap: () {
-                  onArticlePressed(context, article!);
-                },
-              );
-            },
-          );
-        }
-
-        return const SizedBox();
-      },
-    );
-  }
-
-  void onArticlePressed(BuildContext context, ArticleModel article) {
-    Navigator.pushNamed(context, '/detailScreen', arguments: article);
+    return Obx(() {
+      if (savedController.isLoading.value) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (savedController.errorMessage.value.isNotEmpty) {
+        return Center(
+          child: Text(savedController.errorMessage.value),
+        );
+      } else {
+        return ListView.builder(
+          itemCount: savedController.articleList.length,
+          itemBuilder: (context, index) {
+            final article = savedController.articleList[index];
+            return ListTile(
+              title: Text(article.title!),
+              subtitle: Text(article.description!),
+              trailing: IconButton(
+                icon: const Icon(Icons.delete),
+                onPressed: () => savedController.deleteNewsArticleUseCase.execute(article),
+              ),
+              onTap: () => Get.to(() => DetailScreen(article: article)),
+            );
+          },
+        );
+      }
+    });
   }
 }

@@ -5,7 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 class DetailScreen extends HookWidget {
   final ArticleModel? article;
 
-  const DetailScreen({super.key, this.article});
+  const DetailScreen({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {

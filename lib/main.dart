@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sample_news/injection_container.dart';
-import 'package:sample_news/presentation/routes/AppRoutes.dart';
+import 'package:sample_news/presentation/screen/bottomTab/MainTabScreen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,8 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: "/",
-      onGenerateRoute: AppRoutes().onGenerateRoutes,
+      home: const MainTabScreen(),
     );
   }
 }
