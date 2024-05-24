@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sample_news/presentation/screen/bottomTab/MainTabController.dart';
 import 'package:sample_news/presentation/screen/home/HomeScreen.dart';
+import '../../../injection_container.dart';
 import '../saved/SavedScreen.dart';
 
 class MainTabScreen extends StatelessWidget {
@@ -22,7 +23,7 @@ class MainTabScreen extends StatelessWidget {
     ];
 
     const List<Widget> bottomNavScreen = <Widget>[HomeScreen(), SavedScreen()];
-    final MainTabController mainTabController = Get.put(MainTabController());
+    final MainTabController mainTabController = sl<MainTabController>();
 
     return Obx(() {
       return Scaffold(

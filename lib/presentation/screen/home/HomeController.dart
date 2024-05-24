@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:sample_news/domain/usecase/FetchNewsArticleUseCase.dart';
 import 'package:sample_news/domain/usecase/SaveNewsArticleUseCase.dart';
-import 'package:sample_news/presentation/screen/detail/DetailScreen.dart';
 
 import '../../../data/model/ArticleModel.dart';
 import '../../../data/util/Resource.dart';

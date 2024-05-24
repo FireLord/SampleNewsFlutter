@@ -10,6 +10,7 @@ import 'package:sample_news/data/repository/dataSourceImpl/NewsRemoteDataSourceI
 import 'package:sample_news/domain/repository/NewsRepository.dart';
 import 'package:sample_news/domain/usecase/FetchNewsArticleUseCase.dart';
 import 'package:sample_news/presentation/screen/auth/AuthController.dart';
+import 'package:sample_news/presentation/screen/bottomTab/MainTabController.dart';
 import 'package:sample_news/presentation/screen/home/HomeController.dart';
 import 'package:sample_news/presentation/screen/saved/SavedController.dart';
 import 'data/repository/AuthRepositoryImpl.dart';
@@ -81,4 +82,7 @@ Future<void> initDependency() async {
 
   // AuthController as Singleton
   sl.registerSingleton(Get.put(AuthController(sl())));
+
+  // MainTabController as Singleton
+  sl.registerSingleton(Get.put(MainTabController()));
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:sample_news/data/util/Resource.dart';
@@ -10,6 +11,7 @@ class AuthController extends GetxController {
 
   RxString email = "".obs;
   RxString password = "".obs;
+  Rxn<User?> user = Rxn<User?>();
 
   void onSignInEmail() async {
     final result = await authRepository.signInWithEmailAndPassword(email.value, password.value);
@@ -17,6 +19,7 @@ class AuthController extends GetxController {
       if (kDebugMode) {
         print('Sign in success');
       }
+      user.value = result.data;
     } else {
       if (kDebugMode) {
         print(result.message);
@@ -30,6 +33,7 @@ class AuthController extends GetxController {
       if (kDebugMode) {
         print('Register success');
       }
+      user.value = result.data;
     } else {
       if (kDebugMode) {
         print(result.message);
@@ -43,6 +47,7 @@ class AuthController extends GetxController {
       if (kDebugMode) {
         print('Google sign in success');
       }
+      user.value = result.data;
     } else {
       if (kDebugMode) {
         print(result.message);
