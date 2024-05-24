@@ -10,5 +10,5 @@ class Success<T> extends Resource<T> {
 }
 
 class Failure<T> extends Resource<T> {
-  const Failure(String message, T? data) : super(message: message, data: data);
+  const Failure(String message, [T? data]) : super(message: message, data: data);
 }

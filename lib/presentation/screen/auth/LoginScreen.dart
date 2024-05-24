@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:sample_news/presentation/screen/auth/AuthController.dart';
-
+import '../../../injection_container.dart';
 import 'components/InputField.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -9,7 +8,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthController authController = AuthController();
+    final AuthController authController = sl<AuthController>();
     final size = MediaQuery.of(context).size;
 
     return SafeArea(
@@ -67,9 +66,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {
-
-                          },
+                          onPressed: () => authController.onSignInEmail(),
                           style: ButtonStyle(
                             backgroundColor: WidgetStateProperty.all(Colors.purple),
                           ),
@@ -86,9 +83,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {
-
-                          },
+                          onPressed: () => authController.onRegisterEmail(),
                           child: const Text("Register"),
                         ),
                       ),

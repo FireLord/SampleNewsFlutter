@@ -33,10 +33,10 @@ class NewsAPIService {
             .toList();
         return Success(articles);
       } else {
-        return Failure('Failed to load news: ${response.statusCode}', null);
+        return Failure('Failed to load news: ${response.statusCode}');
       }
     } catch (e) {
-      return Failure('Error fetching news: $e', null);
+      return Failure('Error fetching news: $e');
     } finally {
       client.close();
     }

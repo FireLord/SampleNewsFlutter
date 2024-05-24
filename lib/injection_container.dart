@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:sample_news/data/api/NewsAPIService.dart';
@@ -11,8 +12,12 @@ import 'package:sample_news/domain/usecase/FetchNewsArticleUseCase.dart';
 import 'package:sample_news/presentation/screen/auth/AuthController.dart';
 import 'package:sample_news/presentation/screen/home/HomeController.dart';
 import 'package:sample_news/presentation/screen/saved/SavedController.dart';
+import 'data/repository/AuthRepositoryImpl.dart';
 import 'data/repository/NewsRepositoryImpl.dart';
+import 'data/repository/dataSource/auth/AuthFirebaseDataSource.dart';
 import 'data/repository/dataSourceImpl/NewsLocalDataSourceImpl.dart';
+import 'data/repository/dataSourceImpl/auth/AuthFirebaseDataSourceImpl.dart';
+import 'domain/repository/AuthRepository.dart';
 import 'domain/usecase/DeleteNewsArticleUseCase.dart';
 import 'domain/usecase/GetSavedNewsArticleUseCase.dart';
 import 'domain/usecase/SaveNewsArticleUseCase.dart';
@@ -44,8 +49,17 @@ Future<void> initDependency() async {
   // NewsLocalDataSourceImpl as Singleton
   sl.registerSingleton<NewsLocalDataSource>(NewsLocalDataSourceImpl(sl()));
 
-  // RepositoryImpl as Singleton
+  // NewsRepositoryImpl as Singleton
   sl.registerSingleton<NewsRepository>(NewsRepositoryImpl(sl(), sl()));
+
+  // FirebaseAuth as Singleton
+  sl.registerSingleton(FirebaseAuth.instance);
+
+  // AuthFirebaseDataSourceImpl as Singleton
+  sl.registerSingleton<AuthFirebaseDataSource>(AuthFirebaseDataSourceImpl(sl()));
+
+  // AuthRepositoryImpl as Singleton
+  sl.registerSingleton<AuthRepository>(AuthRepositoryImpl(sl()));
 
   // FetchNewsUseCase as Singleton
   sl.registerSingleton(FetchNewsArticleUseCase(sl()));
@@ -66,5 +80,5 @@ Future<void> initDependency() async {
   sl.registerSingleton(Get.put(SavedController(sl(), sl())));
 
   // AuthController as Singleton
-  sl.registerSingleton(Get.put(AuthController()));
+  sl.registerSingleton(Get.put(AuthController(sl())));
 }
