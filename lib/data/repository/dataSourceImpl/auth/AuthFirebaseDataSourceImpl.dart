@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sample_news/data/repository/dataSource/auth/AuthFirebaseDataSource.dart';
 import 'package:sample_news/data/util/Resource.dart';
 
@@ -28,8 +29,19 @@ class AuthFirebaseDataSourceImpl implements AuthFirebaseDataSource {
   }
 
   @override
-  Future<Resource<User>> signInWithGoogle() {
-    throw UnimplementedError();
+  Future<Resource<User>> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication? googleSignInAuthentication = await googleSignInAccount?.authentication;
+      final AuthCredential authCredential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication?.accessToken,
+        idToken: googleSignInAuthentication?.idToken,
+      );
+      final UserCredential userCredential = await firebaseAuth.signInWithCredential(authCredential);
+      return Success(userCredential.user!);
+    } catch (e) {
+      return Failure('Error signing in with Google: $e');
+    }
   }
 
   @override

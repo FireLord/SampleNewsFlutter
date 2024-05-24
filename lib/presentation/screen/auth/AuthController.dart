@@ -36,4 +36,17 @@ class AuthController extends GetxController {
       }
     }
   }
+
+  void onGoogleSignIn() async {
+    final result = await authRepository.signInWithGoogle();
+    if (result is Success) {
+      if (kDebugMode) {
+        print('Google sign in success');
+      }
+    } else {
+      if (kDebugMode) {
+        print(result.message);
+      }
+    }
+  }
 }

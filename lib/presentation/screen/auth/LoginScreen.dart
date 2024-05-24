@@ -92,9 +92,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         child: OutlinedButton(
-                          onPressed: () {
-
-                          },
+                          onPressed: () => authController.onGoogleSignIn(),
                           child: const Text("Login with Google"),
                         ),
                       ),
