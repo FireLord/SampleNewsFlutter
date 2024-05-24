@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "460461505324",
+    "project_id": "iosfirebaselogin-e9d67",
+    "storage_bucket": "iosfirebaselogin-e9d67.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:460461505324:android:87753d432f499d1d338a89",
+        "android_client_info": {
+          "package_name": "com.example.sample_news"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "460461505324-evpe9pd5hpr5h00sr7hbsb86i29rr9bq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3QyEuVs-tUefHgAY9jkcSX6KNThMN6f4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "460461505324-evpe9pd5hpr5h00sr7hbsb86i29rr9bq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "460461505324-f59rjgddg0ukck4qctq05r1t877ft6u4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.appstesting.IosFirebaseLogin"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
