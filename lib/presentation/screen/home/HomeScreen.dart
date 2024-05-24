@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
               subtitle: Text(article.description!),
               trailing: IconButton(
                 icon: const Icon(Icons.favorite_border),
-                onPressed: () => homeController.saveNewsArticleUseCase.execute(article),
+                onPressed: () => homeController.onSaveArticle(article),
               ),
               onTap: () => Get.to(() => DetailScreen(article: article)),
             );

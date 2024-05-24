@@ -27,4 +27,8 @@ class HomeController extends GetxController {
     }
     isLoading.value = false;
   }
+
+  void onSaveArticle(ArticleModel article) {
+    saveNewsArticleUseCase.execute(article);
+  }
 }

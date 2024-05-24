@@ -59,8 +59,8 @@ Future<void> initDependency() async {
   sl.registerSingleton(GetSavedNewsArticleUseCase(sl()));
 
   // HomeController as Factory
-  sl.registerFactory(() => HomeController(sl(), sl()));
+  sl.registerFactory(() => Get.put(HomeController(sl(), sl())));
 
   // SavedController as Factory
-  sl.registerFactory(() => SavedController(sl(), sl()));
+  sl.registerFactory(() => Get.put(SavedController(sl(), sl())));
 }

@@ -35,7 +35,7 @@ class SavedScreen extends StatelessWidget {
               subtitle: Text(article.description!),
               trailing: IconButton(
                 icon: const Icon(Icons.delete),
-                onPressed: () => savedController.deleteNewsArticleUseCase.execute(article),
+                onPressed: () => savedController.onDeleteArticle(article),
               ),
               onTap: () => Get.to(() => DetailScreen(article: article)),
             );
