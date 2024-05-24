@@ -8,6 +8,7 @@ import 'package:sample_news/data/repository/dataSource/NewsRemoteDataSource.dart
 import 'package:sample_news/data/repository/dataSourceImpl/NewsRemoteDataSourceImpl.dart';
 import 'package:sample_news/domain/repository/NewsRepository.dart';
 import 'package:sample_news/domain/usecase/FetchNewsArticleUseCase.dart';
+import 'package:sample_news/presentation/screen/auth/AuthController.dart';
 import 'package:sample_news/presentation/screen/home/HomeController.dart';
 import 'package:sample_news/presentation/screen/saved/SavedController.dart';
 import 'data/repository/NewsRepositoryImpl.dart';
@@ -58,9 +59,12 @@ Future<void> initDependency() async {
   // GetSavedNewsArticleUseCase as Singleton
   sl.registerSingleton(GetSavedNewsArticleUseCase(sl()));
 
-  // HomeController as Factory
+  // HomeController as Singleton
   sl.registerSingleton(Get.put(HomeController(sl(), sl())));
 
-  // SavedController as Factory
+  // SavedController as Singleton
   sl.registerSingleton(Get.put(SavedController(sl(), sl())));
+
+  // AuthController as Singleton
+  sl.registerSingleton(Get.put(AuthController()));
 }

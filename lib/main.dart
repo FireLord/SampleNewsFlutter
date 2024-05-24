@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sample_news/injection_container.dart';
+import 'package:sample_news/presentation/screen/auth/LoginScreen.dart';
 import 'package:sample_news/presentation/screen/bottomTab/MainTabScreen.dart';
 
 Future<void> main() async {
@@ -15,12 +16,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Sample News Flutter',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MainTabScreen(),
+      home: const LoginScreen(),
     );
   }
 }
